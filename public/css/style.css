@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+}
+
+p {
+    text-transform: uppercase;
+    text-align: center;
+    font-family: monospace, Arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.bulbDiv{
+    display: inline-block;
+    min-width: 20%;
+    box-sizing: border-box;
+    padding: 50px 0;
+    color: #fff;
+    border: 1px solid #fff; 
+    background-color: #000;
+    cursor: pointer;
+}
+
+.bulbImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toggle {
+   color: #000;
+   border: 1px solid #000; 
+   background-color: #fafe22  
+}
+
+.toggle img{
+    content: url(../img/bulbOn.png); 
+}
+
+
+/*----------------- Responsive -----------------*/
+@media (max-width: 576px) {
+    .bulbDiv {
+        min-width: 100%;
+    }
+}
+@media (min-width: 577px) {
+    .bulbDiv {
+        min-width: 50%;
+    }
+}
+@media (min-width: 992px) {
+    .bulbDiv {
+        min-width: 25%;
+    }
+}
+@media (min-width: 1200px) {
+    .bulbDiv {
+        min-width: 20%;
+    }
+}
+/*----------------- Responsive -----------------*/
+

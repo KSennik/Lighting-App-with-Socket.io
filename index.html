@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Lighting App with Socket.io</title>
+</head>
+
+<body>
+
+    <div class="bulbDiv" id="bulb1">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 1</p>
+    </div>
+    <div class="bulbDiv" id="bulb2">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 2</p>
+    </div>
+    <div class="bulbDiv" id="bulb3">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 3</p>
+    </div>
+    <div class="bulbDiv" id="bulb4">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 4</p>
+    </div>
+    <div class="bulbDiv" id="bulb5">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 5</p>
+    </div>
+    <div class="bulbDiv" id="bulb6">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 6</p>
+    </div>
+    <div class="bulbDiv" id="bulb7">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 7</p>
+    </div>
+    <div class="bulbDiv" id="bulb8">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 8</p>
+    </div>
+    <div class="bulbDiv" id="bulb9">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 9</p>
+    </div>
+    <div class="bulbDiv" id="bulb10">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 10</p>
+    </div>
+    <div class="bulbDiv" id="bulb11">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 11</p>
+    </div>
+    <div class="bulbDiv" id="bulb12">
+        <img class="bulbImg" src="img/bulbOff.png" alt="Bulb Image">
+        <p>lighting 12</p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let bulbDiv = document.getElementsByClassName("bulbDiv");
+        let socket = io();
+
+        //Get bulb status from server
+        socket.on('server bulbStatus changed',(bulbStatus)=>{
+            console.log('bulbStatus: ' + bulbStatus);
+            for (let i = 0; i < bulbStatus.length; i++) {
+                if(bulbStatus[i]){
+                    bulbDiv[i].className = "bulbDiv toggle";
+                }else{
+                    bulbDiv[i].className = "bulbDiv";
+                }
+            }
+        });
+
+        //Click event
+        let status = 0;
+        for (let i = 0; i < bulbDiv.length; i++) {
+            bulbDiv[i].addEventListener("click",()=>{
+                if(!bulbDiv[i].classList.contains("toggle")){
+                    bulbDiv[i].className = "bulbDiv toggle";
+                    status = 1;
+                }else{
+                    bulbDiv[i].className = "bulbDiv";
+                    status = 0;
+                }
+                //Send event to server
+                socket.emit('client bulbStatus changed',i,status);  
+            });
+        }
+    </script>
+</body>
+
+</html>

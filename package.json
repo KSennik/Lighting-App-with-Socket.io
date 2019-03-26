@@ -1,0 +1,16 @@
+{
+  "name": "lighting_app_with_socket.io",
+  "version": "1.0.0",
+  "description": "A basic real-time lighting app using socket.io.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Kerem Sennik",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.2.2",
+    "socket.io": "^2.2.0"
+  }
+}
